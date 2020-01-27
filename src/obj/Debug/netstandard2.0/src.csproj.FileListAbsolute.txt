@@ -1,8 +1,0 @@
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\bin\Debug\netstandard2.0\src.deps.json
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\bin\Debug\netstandard2.0\src.dll
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\bin\Debug\netstandard2.0\src.pdb
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\obj\Debug\netstandard2.0\src.csprojAssemblyReference.cache
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\obj\Debug\netstandard2.0\src.AssemblyInfoInputs.cache
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\obj\Debug\netstandard2.0\src.AssemblyInfo.cs
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\obj\Debug\netstandard2.0\src.dll
-c:\Users\mario\Desktop\AssecorTestBackendSolution\src\obj\Debug\netstandard2.0\src.pdb

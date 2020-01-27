@@ -91,3 +91,4 @@ C:\Users\mario\Desktop\AssecorTestBackendSolution\test\app.Tests\obj\Debug\netco
 C:\Users\mario\Desktop\AssecorTestBackendSolution\test\app.Tests\obj\Debug\netcoreapp3.1\app.Tests.csproj.CopyComplete
 C:\Users\mario\Desktop\AssecorTestBackendSolution\test\app.Tests\obj\Debug\netcoreapp3.1\app.Tests.dll
 C:\Users\mario\Desktop\AssecorTestBackendSolution\test\app.Tests\obj\Debug\netcoreapp3.1\app.Tests.pdb
+C:\Users\mario\Desktop\AssecorTestBackendSolution\test\app.Tests\obj\Debug\netcoreapp3.1\app.Tests.csprojAssemblyReference.cache

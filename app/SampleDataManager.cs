@@ -43,9 +43,9 @@ namespace app
 
         public async Task SetPersonResponseAsync(PersonResponse personResponse)
         {
-            await personsRepository.SetPersonAsync(ParseToPerson(personResponse));
+            await personsRepository.SetPersonAsync(ParseToPersonFromSource(personResponse));
 
-            PersonFromSource ParseToPerson(PersonResponse personResponse)
+            PersonFromSource ParseToPersonFromSource(PersonResponse personResponse)
             {
                 return new PersonFromSource()
                 {

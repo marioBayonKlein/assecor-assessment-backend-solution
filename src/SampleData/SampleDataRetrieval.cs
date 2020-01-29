@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.Extensions.Options;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace src.SampleData
     public class SampleDataRetrieval : ISampleDataRetrieval
     {
         private readonly FileOptions options;
-        public SampleDataRetrieval(FileOptions options)
+        public SampleDataRetrieval(IOptions<FileOptions> options)
         {
-            this.options = options;
+            this.options = options.Value;
         }
         public Task<IEnumerable<Person>> ReturnPersonsFromSampleDataAsync()
         {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using src.SampleData;
 using Xunit;
@@ -12,10 +13,11 @@ namespace test.src.SampleData
         public async Task ReturnSampleDataFromFile()
         {
             var expectedData = CreateExpectedSampleData();
-            var options = new FileOptions()
+
+            var options = Options.Create<FileOptions>(new FileOptions()
             {
                 Path = "../../../SampleData/sample-input-test.csv"
-            };
+            });
 
             var dataRetrieval = new SampleDataRetrieval(options);
             var actualData = await dataRetrieval.ReturnPersonsFromSampleDataAsync();

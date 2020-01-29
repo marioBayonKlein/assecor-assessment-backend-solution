@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using src.SampleData;
+using src.SampleData.Common;
+using src.SampleData.FromFile;
 
 namespace app
 {
@@ -44,9 +45,9 @@ namespace app
         {
             await personsRepository.SetPersonAsync(ParseToPerson(personResponse));
 
-            Person ParseToPerson(PersonResponse personResponse)
+            PersonFromSource ParseToPerson(PersonResponse personResponse)
             {
-                return new Person()
+                return new PersonFromSource()
                 {
                     Id = personResponse.Id,
                     Name = personResponse.Name,
@@ -61,13 +62,13 @@ namespace app
         {
             var retrievedPersons = await sampleDataRetrieval.ReturnPersonsFromSampleDataAsync();
 
-            foreach (Person retrievedPerson in retrievedPersons)
+            foreach (PersonFromSource retrievedPerson in retrievedPersons)
             {
                 await personsRepository.SetPersonAsync(retrievedPerson);
             }
         }
 
-        private PersonResponse ReturnPersonResponseFormat(Person person)
+        private PersonResponse ReturnPersonResponseFormat(PersonFromSource person)
         {
             if (person == null)
             {

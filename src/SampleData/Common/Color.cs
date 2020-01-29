@@ -1,4 +1,4 @@
-namespace src.SampleData
+namespace src.SampleData.Common
 {
     public enum Color
     {

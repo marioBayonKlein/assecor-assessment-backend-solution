@@ -1,8 +1,9 @@
 using CsvHelper.Configuration;
+using src.SampleData.Common;
 
-namespace src.SampleData
+namespace src.SampleData.FromFile
 {
-    public sealed class PersonMap : ClassMap<Person>
+    public sealed class PersonMap : ClassMap<PersonFromSource>
     {
         public PersonMap()
         {

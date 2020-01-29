@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using src.SampleData;
+using src.SampleData.Common;
 
 namespace app.Controllers
 {

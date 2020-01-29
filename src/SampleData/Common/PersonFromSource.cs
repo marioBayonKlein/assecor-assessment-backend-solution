@@ -1,6 +1,6 @@
-namespace src.SampleData
+namespace src.SampleData.Common
 {
-    public class Person
+    public class PersonFromSource
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using src.SampleData;
+using src.SampleData.Common;
+using src.SampleData.FromFile;
 
 namespace app
 {

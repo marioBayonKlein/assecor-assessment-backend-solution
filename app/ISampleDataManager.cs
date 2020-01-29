@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using src.SampleData;
+using src.SampleData.Common;
 
 namespace app
 {

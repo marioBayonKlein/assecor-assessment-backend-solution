@@ -3,7 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using Newtonsoft.Json;
-using src.SampleData;
+using src.SampleData.Common;
+using src.SampleData.FromFile;
 using Xunit;
 
 namespace test.src.SampleData
@@ -13,7 +14,7 @@ namespace test.src.SampleData
         [Fact]
         public async Task ReturnAllPersonsCorrectly()
         {
-            var expectedPersons = new List<Person>()
+            var expectedPersons = new List<PersonFromSource>()
             {
                 CreateTestPerson(1, "James", "Gordon", "12345 Gotham", Color.Blue),
                 CreateTestPerson(2, "Bruce", "Wayne", "83731 Gotham", Color.White)
@@ -31,7 +32,7 @@ namespace test.src.SampleData
         {
             var expectedId = 3;
             var expectedPerson = CreateTestPerson(expectedId, "James", "Gordon", "12345 Gotham", Color.Blue);
-            var persons = new List<Person>()
+            var persons = new List<PersonFromSource>()
             {
                 CreateTestPerson(1, "Bruce", "Wayne", "83731 Gotham", Color.White),
                 CreateTestPerson(2, "Alfred", "Pennyworth", "83731 Gotham", Color.Violett),
@@ -51,14 +52,14 @@ namespace test.src.SampleData
             var expectedColor = Color.Green;
             var expectedPerson1 = CreateTestPerson(1, "James", "Gordon", "12345 Gotham", expectedColor);
             var expectedPerson2 = CreateTestPerson(2, "Harvey", "Bullock", "93721 Metropolis", expectedColor);
-            var persons = new List<Person>()
+            var persons = new List<PersonFromSource>()
             {
                 CreateTestPerson(3, "Bruce", "Wayne", "83731 Gotham", Color.White),
                 CreateTestPerson(4, "Alfred", "Pennyworth", "83731 Gotham", Color.Violett),
                 expectedPerson1,
                 expectedPerson2
             };
-            var expectedPersons = new List<Person>() { expectedPerson1, expectedPerson2 };
+            var expectedPersons = new List<PersonFromSource>() { expectedPerson1, expectedPerson2 };
             var repository = new MemoryPersonsRepository();
             await PutTestingInformationInRepository(repository, expectedPersons);
 
@@ -68,8 +69,8 @@ namespace test.src.SampleData
         }
         
 
-        private Person CreateTestPerson(int id, string name, string lastName, string direction, Color color) =>
-            new Person()
+        private PersonFromSource CreateTestPerson(int id, string name, string lastName, string direction, Color color) =>
+            new PersonFromSource()
             {
                 Id = id,
                 Name = name,
@@ -80,7 +81,7 @@ namespace test.src.SampleData
 
         private async Task PutTestingInformationInRepository(
             MemoryPersonsRepository repository,
-            IEnumerable<Person> persons)
+            IEnumerable<PersonFromSource> persons)
         {
             foreach (var person in persons)
             {

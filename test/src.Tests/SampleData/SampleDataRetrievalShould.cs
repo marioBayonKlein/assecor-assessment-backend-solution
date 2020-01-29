@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using src.SampleData;
+using src.SampleData.Common;
+using src.SampleData.FromFile;
 using Xunit;
 
 namespace test.src.SampleData
@@ -25,10 +26,10 @@ namespace test.src.SampleData
             Assert.Equal(JsonConvert.SerializeObject(expectedData), JsonConvert.SerializeObject(actualData));
         }
 
-        private IEnumerable<Person> CreateExpectedSampleData()
-            => new List<Person>()
+        private IEnumerable<PersonFromSource> CreateExpectedSampleData()
+            => new List<PersonFromSource>()
                 {
-                    new Person()
+                    new PersonFromSource()
                     {
                         Id = 1,
                         Name = "Michael",
@@ -36,7 +37,7 @@ namespace test.src.SampleData
                         Direction = "12345 Frankfurt",
                         Color = Color.Blue
                     },
-                    new Person()
+                    new PersonFromSource()
                     {
                         Id = 2,
                         Name = "Lewis",
@@ -44,7 +45,7 @@ namespace test.src.SampleData
                         Direction = "98765 London",
                         Color = Color.Red
                     },
-                    new Person()
+                    new PersonFromSource()
                     {
                         Id = 3,
                         Name = "Nico",

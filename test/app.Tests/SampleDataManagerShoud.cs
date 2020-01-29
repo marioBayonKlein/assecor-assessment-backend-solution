@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using app;
 using Moq;
 using Newtonsoft.Json;
-using src.SampleData;
+using src.SampleData.Common;
+using src.SampleData.FromFile;
 using Xunit;
 
 namespace test.app
@@ -91,11 +92,11 @@ namespace test.app
                 sampleDataRetrieval);
             await manager.SetPersonResponseAsync(personResponse);
 
-            repository.Verify(r => r.SetPersonAsync(It.IsAny<Person>()), Times.Once);
+            repository.Verify(r => r.SetPersonAsync(It.IsAny<PersonFromSource>()), Times.Once);
 
-            Person ParseToPerson(PersonResponse personResponse)
+            PersonFromSource ParseToPerson(PersonResponse personResponse)
             {
-                return new Person()
+                return new PersonFromSource()
                 {
                     Id = personResponse.Id,
                     Name = personResponse.Name,
@@ -121,7 +122,7 @@ namespace test.app
                 sampleDataRetrieval.Object);
             await manager.InitializeRepositoryAsync();
 
-            repository.Verify(r => r.SetPersonAsync(It.IsAny<Person>()), Times.AtMost(2));
+            repository.Verify(r => r.SetPersonAsync(It.IsAny<PersonFromSource>()), Times.AtMost(2));
         }
 
         private IPersonsRepository CreateMockOfRepositoryForIdCase(PersonResponse personResponse)
@@ -189,15 +190,15 @@ namespace test.app
                 }
             };
 
-        private static IEnumerable<Person> ReturnEnumerableRetrievedPersons =>
-        new List<Person>()
+        private static IEnumerable<PersonFromSource> ReturnEnumerableRetrievedPersons =>
+        new List<PersonFromSource>()
         {
-                new Person(),
-                new Person()
+                new PersonFromSource(),
+                new PersonFromSource()
         };
 
-        private Person ParseToSourcePerson(PersonResponse personResponse) =>
-            new Person()
+        private PersonFromSource ParseToSourcePerson(PersonResponse personResponse) =>
+            new PersonFromSource()
             {
                 Id = personResponse.Id,
                 Name = personResponse.Name,

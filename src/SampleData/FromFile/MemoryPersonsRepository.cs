@@ -31,7 +31,10 @@ namespace src.SampleData.FromFile
 
         public Task SetPersonAsync(PersonFromSource person)
         {
-            AllPersonsById.Add(person.Id, person);
+            var newId = AllPersons.Count() + 1;
+            person.Id = newId;
+
+            AllPersonsById.Add(newId, person);
 
             return Task.CompletedTask;
         }

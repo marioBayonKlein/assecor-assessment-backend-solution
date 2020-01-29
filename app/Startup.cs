@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using src.SampleData.FromDataBase;
 using src.SampleData.Common;
 using src.SampleData.FromFile;
+using Microsoft.EntityFrameworkCore;
 
 namespace app
 {
@@ -21,10 +23,30 @@ namespace app
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
-            services.Configure<FileOptions>(Configuration.GetSection("ApplicationConfiguration:FileOptions"));
-            services.AddSingleton<ISampleDataRetrieval, SampleDataRetrieval>();
-            services.AddSingleton<IPersonsRepository, MemoryPersonsRepository>();
-            services.AddSingleton<ISampleDataManager, SampleDataManager>();
+
+            var repositoryOptions = new RepositoryOptions();
+            Configuration.GetSection("RepositoryOptions").Bind(repositoryOptions);
+            services.AddSingleton<RepositoryOptions>(repositoryOptions);
+
+            if (repositoryOptions.RepositoryType == RepositoryType.InSqlServer)
+            {
+                services.AddDbContext<DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                services.AddScoped<IPersonsRepository, SqlServerAccessRepository>();
+                services.AddScoped<ISampleDataRetrieval, SampleDataRetrieval>();
+                services.AddScoped<ISampleDataManager, SampleDataManager>();
+            }
+            else if (repositoryOptions.RepositoryType == RepositoryType.InMemory)
+            {
+                services.Configure<FileOptions>(Configuration.GetSection("FileOptions"));
+                services.AddSingleton<ISampleDataRetrieval, SampleDataRetrieval>();
+                services.AddSingleton<IPersonsRepository, MemoryPersonsRepository>();
+                services.AddSingleton<ISampleDataManager, SampleDataManager>();
+            }
+            else
+            {
+                throw new System.Exception("Configuration was not read correctly");
+            }
+            
             services.AddControllers();
         }
 

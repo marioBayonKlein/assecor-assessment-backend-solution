@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using src.SampleData.Common;
 
 namespace app
 {
@@ -19,8 +20,13 @@ namespace app
 
                 try
                 {
-                    var sampleDataManager = services.GetRequiredService<ISampleDataManager>();
-                    await sampleDataManager.InitializeRepositoryAsync();
+                    var repositoryOptions = (RepositoryOptions)host.Services.GetService(typeof(RepositoryOptions));
+
+                    if (repositoryOptions.RepositoryType == RepositoryType.InMemory)
+                    {
+                        var sampleDataManager = services.GetRequiredService<ISampleDataManager>();
+                        await sampleDataManager.InitializeRepositoryAsync();
+                    }
                 }
                 catch (Exception ex)
                 {

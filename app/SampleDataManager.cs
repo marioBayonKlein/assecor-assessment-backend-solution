@@ -49,7 +49,6 @@ namespace app
             {
                 return new PersonFromSource()
                 {
-                    Id = personResponse.Id,
                     Name = personResponse.Name,
                     LastName = personResponse.LastName,
                     Color = (Color)Enum.Parse(typeof(Color), personResponse.Color),

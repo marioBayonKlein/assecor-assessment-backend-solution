@@ -34,7 +34,8 @@ namespace app.Controllers
             catch (Exception exception)
             {
                 LogException(exception);
-                return Problem(exception.Message, "", (int)HttpStatusCode.InternalServerError);
+                return Problem(exception.Message + " " + exception.InnerException.ToString(), "", 
+                    (int)HttpStatusCode.InternalServerError);
             }
         }
 
@@ -49,7 +50,8 @@ namespace app.Controllers
             catch (Exception exception)
             {
                 LogException(exception);
-                return Problem(exception.Message, "", (int)HttpStatusCode.InternalServerError);
+                return Problem(exception.Message + " " + exception.InnerException.ToString(), "", 
+                    (int)HttpStatusCode.InternalServerError);
             }
         }
 
@@ -64,7 +66,8 @@ namespace app.Controllers
             catch (Exception exception)
             {
                 LogException(exception);
-                return Problem(exception.Message, "", (int)HttpStatusCode.InternalServerError);
+                return Problem(exception.Message + " " + exception.InnerException.ToString(), "", 
+                    (int)HttpStatusCode.InternalServerError);
             }
         }
 
@@ -79,7 +82,8 @@ namespace app.Controllers
             catch (Exception exception)
             {
                 LogException(exception);
-                return Problem(exception.Message, "", (int)HttpStatusCode.InternalServerError);
+                return Problem(exception.Message + " " + exception.InnerException.ToString(), "", 
+                    (int)HttpStatusCode.InternalServerError);
             }
         }
 
